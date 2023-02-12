@@ -6,11 +6,11 @@ internal sealed class VatAmountCalculusStrategy : StrategyBase
 {
     public override VatCalculationTypes CalculationType => VatCalculationTypes.Vat;
 
-    protected override CalculationResult CalculateVat(decimal multiplier, VatCalculationDetails details)
+    protected override DomainResult<VatCalculusDetails> CalculateVat(decimal multiplier, VatCalculationDetails details)
     {
         var vatAmount = details.VatAmount!.Value;
         var netAm = vatAmount / multiplier;
 
-        return new CalculationResult(true, Details: new VatCalculusDetails(netAm + vatAmount, netAm, vatAmount));
+        return new DomainResult<VatCalculusDetails>(true, Details: new VatCalculusDetails(netAm + vatAmount, netAm, vatAmount));
     }
 }

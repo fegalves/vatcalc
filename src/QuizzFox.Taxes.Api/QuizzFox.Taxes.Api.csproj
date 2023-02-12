@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Responses\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\QuizzFox.Taxes.Domain\QuizzFox.Taxes.Domain.csproj" />
     <ProjectReference Include="..\QuizzFox.Taxes.Infra\QuizzFox.Taxes.Infra.csproj" />
   </ItemGroup>

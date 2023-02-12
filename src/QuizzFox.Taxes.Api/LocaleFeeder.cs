@@ -1,4 +1,5 @@
 ﻿using QuizzFox.Taxes.Domain.Interfaces;
+using QuizzFox.Taxes.Domain.Models;
 
 namespace QuizzFox.Taxes.Api;
 
@@ -11,7 +12,7 @@ internal sealed class LocaleFeeder : IHostedService
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
-        _calculusService.SaveVatRates("de_AT", new[] { 10m, 13m, 20m });
+        _calculusService.SaveVatRates(new VatRegistrationDetails("de_AT", new[] { 10m, 13m, 20m }));
 
         return Task.CompletedTask;
     }

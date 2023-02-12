@@ -6,5 +6,5 @@ internal interface ICalculusStrategy
 {
     public VatCalculationTypes CalculationType { get; }
 
-    CalculationResult CalculateVat(VatCalculationDetails details);
+    DomainResult<VatCalculusDetails> CalculateVat(VatCalculationDetails details);
 }

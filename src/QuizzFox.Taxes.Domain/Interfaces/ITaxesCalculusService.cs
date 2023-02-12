@@ -4,7 +4,9 @@ namespace QuizzFox.Taxes.Domain.Interfaces;
 
 public interface ITaxesCalculusService
 {
-    CalculationResult CalculateVatDetails(string locale, VatCalculationDetails details);
+    DomainResult<VatCalculusDetails> CalculateVatDetails(string locale, VatCalculationDetails details);
 
-    void SaveVatRates(string locale, IEnumerable<decimal> vatRates);
+    DomainResult SaveVatRates(VatRegistrationDetails details);
+
+    DomainResult<IEnumerable<decimal>> GetRates(string locale);
 }

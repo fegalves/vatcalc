@@ -1,8 +1,10 @@
-﻿namespace QuizzFox.Taxes.Domain.Interfaces;
+﻿using QuizzFox.Taxes.Domain.Models;
+
+namespace QuizzFox.Taxes.Domain.Interfaces;
 
 public interface ITaxesReferenceData
 {
     IEnumerable<decimal>? GetVatRates(string locale);
 
-    void SaveVatRates(string locale, IEnumerable<decimal> vatRates);
+    void SaveVatRates(VatRegistrationDetails details);
 }

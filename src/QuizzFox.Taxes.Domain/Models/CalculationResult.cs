@@ -1,3 +1,6 @@
 ﻿namespace QuizzFox.Taxes.Domain.Models;
 
-public sealed record CalculationResult(bool Success = false, string? Reason = default, VatCalculusDetails? Details = default);
+public record DomainResult(bool Success = false, bool Error = false, string? Reason = default);
+
+public sealed record DomainResult<TDetails>(bool Success = false, bool Error = false, string? Reason = default, TDetails? Details = default) :
+    DomainResult(Success, Error, Reason);

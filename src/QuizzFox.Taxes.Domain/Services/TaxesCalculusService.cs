@@ -14,31 +14,59 @@ internal sealed class TaxesCalculusService : ITaxesCalculusService
         _availableStraegies = strategies.ToDictionary(s => s.CalculationType);
     }
 
-    CalculationResult ITaxesCalculusService.CalculateVatDetails(string locale, VatCalculationDetails details)
+    DomainResult<VatCalculusDetails> ITaxesCalculusService.CalculateVatDetails(string locale, VatCalculationDetails details)
     {
         var rates = _taxesReference.GetVatRates(locale);
 
         if (rates is null)
-            return new CalculationResult(Reason: $"No rates found for given locale {locale}");
+            return new DomainResult<VatCalculusDetails>(Reason: $"No rates found for given locale {locale}");
 
         if (!rates.Contains(details.VatRate))
-            return new CalculationResult(Reason: $"The given rate {details.VatRate} was not found as a valid rate for locale {locale}");
+            return new DomainResult<VatCalculusDetails>(Reason: $"The given rate {details.VatRate} was not found as a valid rate for locale {locale}");
 
         try
         {
             var calculationType = details.GetCalculationType();
 
             if (!_availableStraegies.TryGetValue(calculationType, out var strategy))
-                return new CalculationResult(Reason: $"Could not find a proper calculation strategy for type {calculationType}");
+                return new DomainResult<VatCalculusDetails>(Reason: $"Could not find a proper calculation strategy for type {calculationType}");
 
             return strategy.CalculateVat(details);
         }
         catch (Exception exc)
         {
-            return new CalculationResult(Reason: exc.Message);
+            return new DomainResult<VatCalculusDetails>(Error: true, Reason: exc.Message);
         }
     }
 
-    void ITaxesCalculusService.SaveVatRates(string locale, IEnumerable<decimal> vatRates) =>
-        _taxesReference.SaveVatRates(locale, vatRates);
+    DomainResult<IEnumerable<decimal>> ITaxesCalculusService.GetRates(string locale)
+    {
+        try
+        {
+            var rates = _taxesReference.GetVatRates(locale);
+
+            if (rates is null)
+                return new DomainResult<IEnumerable<decimal>>(Reason: $"No VAT rates found for locale {locale}");
+
+            return new DomainResult<IEnumerable<decimal>>(true, Details: rates);
+        }
+        catch (Exception exc)
+        {
+            return new DomainResult<IEnumerable<decimal>>(Error: true, Reason: exc.Message);
+        }
+    }
+
+    DomainResult ITaxesCalculusService.SaveVatRates(VatRegistrationDetails details)
+    {
+        try
+        {
+            _taxesReference.SaveVatRates(details);
+
+            return new DomainResult(true);
+        }
+        catch(Exception exc)
+        {
+            return new DomainResult(Error: true, Reason: exc.Message);
+        }
+    }
 }
