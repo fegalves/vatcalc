@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizzFox.Taxes.Api", "QuizzFox.Taxes.Api\QuizzFox.Taxes.Api.csproj", "{663D824C-DFB9-422E-9970-1F07E02E13FB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizzFox.Taxes.Domain.Tests", "QuizzFox.Taxes.Tests\QuizzFox.Taxes.Domain.Tests.csproj", "{75FC032E-5D47-4C6C-B49E-45C3391F72E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizzFox.Taxes.Domain.Tests", "QuizzFox.Taxes.Domain.Tests\QuizzFox.Taxes.Domain.Tests.csproj", "{75FC032E-5D47-4C6C-B49E-45C3391F72E1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizzFox.Taxes.Domain", "QuizzFox.Taxes.Domain\QuizzFox.Taxes.Domain.csproj", "{1F6D337E-2473-4DD8-AE11-B122F8F7D84B}"
 EndProject
