@@ -16,16 +16,16 @@ internal sealed class TaxesCalculusService : ITaxesCalculusService
 
     DomainResult<VatCalculusDetails> ITaxesCalculusService.CalculateVatDetails(string locale, VatCalculationDetails details)
     {
-        var rates = _taxesReference.GetVatRates(locale);
-
-        if (rates is null)
-            return new DomainResult<VatCalculusDetails>(Reason: $"No rates found for given locale {locale}");
-
-        if (!rates.Contains(details.VatRate))
-            return new DomainResult<VatCalculusDetails>(Reason: $"The given rate {details.VatRate} was not found as a valid rate for locale {locale}");
-
         try
         {
+            var rates = _taxesReference.GetVatRates(locale);
+
+            if (rates is null)
+                return new DomainResult<VatCalculusDetails>(Reason: $"No rates found for given locale {locale}");
+
+            if (!rates.Contains(details.VatRate))
+                return new DomainResult<VatCalculusDetails>(Reason: $"The given rate {details.VatRate} was not found as a valid rate for locale {locale}");
+
             var calculationType = details.GetCalculationType();
 
             if (!_availableStraegies.TryGetValue(calculationType, out var strategy))

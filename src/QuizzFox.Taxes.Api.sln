@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Infra", "2 - Infra", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0981B891-CB0B-4839-BA6F-91A7EF593028}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizzFox.Taxes.Api.Tests", "QuizzFox.TaxesApi.Tests\QuizzFox.Taxes.Api.Tests.csproj", "{E82230D5-4633-4155-9C0B-3E8B3E4F4C47}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{06BF41B9-A5D7-473B-905D-035BC485D230}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06BF41B9-A5D7-473B-905D-035BC485D230}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06BF41B9-A5D7-473B-905D-035BC485D230}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E82230D5-4633-4155-9C0B-3E8B3E4F4C47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E82230D5-4633-4155-9C0B-3E8B3E4F4C47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E82230D5-4633-4155-9C0B-3E8B3E4F4C47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E82230D5-4633-4155-9C0B-3E8B3E4F4C47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{5CAD74B5-CB1D-4D78-B9AE-61A350BEA935} = {FC38BAC9-EC15-4FD1-908E-474DE03DC27A}
 		{813C21E3-E16C-43C2-8DCF-F90C1378AD02} = {FC38BAC9-EC15-4FD1-908E-474DE03DC27A}
 		{CB38263C-EC37-42B6-B15F-C2AB40A9E8BE} = {FC38BAC9-EC15-4FD1-908E-474DE03DC27A}
+		{E82230D5-4633-4155-9C0B-3E8B3E4F4C47} = {0981B891-CB0B-4839-BA6F-91A7EF593028}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {41699745-5A61-49F9-A687-1342E255E3E3}

@@ -21,4 +21,8 @@
     <ProjectReference Include="..\QuizzFox.Taxes.Infra\QuizzFox.Taxes.Infra.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<InternalsVisibleTo Include="$(AssemblyName).Tests"/>
+	</ItemGroup>
+
 </Project>

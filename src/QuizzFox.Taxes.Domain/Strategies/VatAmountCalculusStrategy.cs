@@ -1,16 +1,18 @@
-﻿using QuizzFox.Taxes.Domain.Models;
+﻿using QuizzFox.Taxes.Domain.Interfaces;
+using QuizzFox.Taxes.Domain.Models;
 
 namespace QuizzFox.Taxes.Domain.Strategies;
 
-internal sealed class VatAmountCalculusStrategy : StrategyBase
+internal sealed class VatAmountCalculusStrategy : ICalculusStrategy
 {
-    public override VatCalculationTypes CalculationType => VatCalculationTypes.Vat;
+    VatCalculationTypes ICalculusStrategy.CalculationType => VatCalculationTypes.Vat;
 
-    protected override DomainResult<VatCalculusDetails> CalculateVat(decimal multiplier, VatCalculationDetails details)
+    DomainResult<VatCalculusDetails> ICalculusStrategy.CalculateVat(VatCalculationDetails details)
     {
-        var vatAmount = details.VatAmount!.Value;
-        var netAm = vatAmount / multiplier;
+        var multiplier = details.VatRate / 100;
+        var vat = details.VatAmount!.Value;
+        var net = vat / multiplier;
 
-        return new DomainResult<VatCalculusDetails>(true, Details: new VatCalculusDetails(netAm + vatAmount, netAm, vatAmount));
+        return new DomainResult<VatCalculusDetails>(true, Details: new VatCalculusDetails(vat + net, net, vat));
     }
 }

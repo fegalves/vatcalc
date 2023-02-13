@@ -1,16 +1,18 @@
-﻿using QuizzFox.Taxes.Domain.Models;
+﻿using QuizzFox.Taxes.Domain.Interfaces;
+using QuizzFox.Taxes.Domain.Models;
 
 namespace QuizzFox.Taxes.Domain.Strategies;
 
-internal sealed class GrossAmountCalculusStrategy : StrategyBase
+internal sealed class GrossAmountCalculusStrategy : ICalculusStrategy
 {
-    public override VatCalculationTypes CalculationType => VatCalculationTypes.Gross;
+    VatCalculationTypes ICalculusStrategy.CalculationType => VatCalculationTypes.Gross;
 
-    protected override DomainResult<VatCalculusDetails> CalculateVat(decimal multiplier, VatCalculationDetails details)
+    DomainResult<VatCalculusDetails> ICalculusStrategy.CalculateVat(VatCalculationDetails details)
     {
-        var gross = details.GrossAmount!.Value;
-        var vatAmount = gross * multiplier;
+        var multiplier = 100 / (details.VatRate + 100);
+        var gross = Math.Round(details.GrossAmount!.Value, 2);
+        var net = Math.Round(gross * multiplier, 2);
 
-        return new DomainResult<VatCalculusDetails>(true, Details: new VatCalculusDetails(gross, gross - vatAmount, vatAmount));
+        return new DomainResult<VatCalculusDetails>(true, Details: new VatCalculusDetails(gross, net, gross - net));
     }
 }
